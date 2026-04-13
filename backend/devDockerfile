@@ -1,0 +1,13 @@
+FROM node:22-alpine
+
+RUN apk add --no-cache ffmpeg
+
+WORKDIR /app
+
+# Install deps separately for layer caching
+# Source is mounted via volume at runtime — no COPY of src needed
+COPY backend/package.json backend/package-lock.json ./
+
+RUN npm ci
+
+CMD ["npm", "run", "dev"]
