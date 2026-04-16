@@ -8,3 +8,16 @@ export const uploadVoiceMessage = async (form: FormData) => {
     });
     return response.data;
 }
+
+export interface TranscribeResponse {
+    text: string
+}
+
+export async function transcribeAudio(form: FormData): Promise<TranscribeResponse> {
+    const response = await httpClient.post<TranscribeResponse>("/audio/transcribe", form, {
+        headers: {
+            "Content-Type": "multipart/formdata"
+        }
+    })
+    return response.data
+}

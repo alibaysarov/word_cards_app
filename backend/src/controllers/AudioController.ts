@@ -19,6 +19,19 @@ class AudioController {
 
     }
 
+    async transcribe(req: Request, res: Response) {
+        const { userId } = req;
+        if (userId == undefined) {
+            throw new AuthError()
+        }
+        if (req.file == undefined) {
+            throw new ServerError()
+        }
+
+        const text = await AudioTestService.getTextFromSpeech(req.file.path);
+        res.json({ text });
+    }
+
 }
 
 export default new AudioController();

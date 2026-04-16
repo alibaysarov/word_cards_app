@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   Heading,
   Spinner,
@@ -7,7 +6,7 @@ import {
   VStack,
 } from '@chakra-ui/react'
 import { useNavigate, useParams } from 'react-router'
-import { HighlightedText } from '../components/ui/HighlightedText'
+import { SentencePronunciationCard } from '../components/app/SentencePronunciationCard'
 import { useCollectionSentences } from '../hooks/useCollectionSentences'
 
 export function CollectionSentencesPage() {
@@ -66,19 +65,7 @@ export function CollectionSentencesPage() {
 
       <VStack gap={6} w="full" maxW="860px">
         {sentences.map((sentence) => (
-          <Box
-            key={sentence.id}
-            bg="bg.surface"
-            borderWidth="1px"
-            borderColor="border.default"
-            borderRadius="modal"
-            shadow="card.default"
-            w="full"
-            p={8}
-            textAlign="center"
-          >
-            <HighlightedText text={sentence.text} word={sentence.highLighted} translate={sentence.translate} />
-          </Box>
+          <SentencePronunciationCard key={sentence.id} sentence={sentence} />
         ))}
       </VStack>
 

@@ -41,5 +41,13 @@ router.post(
     AudioController.uploadVoiceMessage
 );
 
+router.post(
+    '/transcribe',
+    auth,
+    upload.single("audio"),
+    voiceMessageValidation,
+    AudioController.transcribe
+);
+
 
 export default router;
